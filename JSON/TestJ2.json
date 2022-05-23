@@ -1,0 +1,1 @@
+{"Character":[{"TokenID": 1,"Sex": "Male","Class": "Warrior","HP": 100, "ATKMax":10, "ATKMin":2},{"TokenID": 2,"Sex": "Female","Class": "Mage","HP": 90, "ATKMax":10, "ATKMin":2},{"TokenID": 3,"Sex": "Male","Class": "Thief","HP": 120, "ATKMax":10, "ATKMin":2}]}
