@@ -7,6 +7,8 @@ public class JSONReader : MonoBehaviour
     //Place JSON file here!!
     public TextAsset jsonfile;
 
+    public GameObject GM;
+
     //Make sure variables here matches the variables in the JSON file
     [System.Serializable]
     public class JSONData
@@ -37,6 +39,7 @@ public class JSONReader : MonoBehaviour
     {
         //Fills the character list with data from the JSON file
         MyCharacter = JsonUtility.FromJson<CharacterData>(jsonfile.text);
+        GM.GetComponent<GameManager>().SetPriority();
         
     }
 

@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
         TurnIndex = 0;
         AttackTimer = 3;
 
+        
+    }
+
+    //Sets up the priority list, then rolls character stats
+    public void SetPriority() 
+    {
         //Randomize priority table
         for (int i = 0; i < Characters.Length; i++)
         {
@@ -38,7 +44,7 @@ public class GameManager : MonoBehaviour
             bool Placement = false;
             int pos = 0;
 
-            while(Placement==false)
+            while (Placement == false)
             {
                 //Gives the character a random value between 0 and the length of the character list
                 pos = Random.Range(0, Characters.Length);
@@ -54,8 +60,12 @@ public class GameManager : MonoBehaviour
 
             }
 
+            for (int r = 0; r < Characters.Length; r++)
+            {
+                Characters[r].GetComponent<CharStat>().StatRoll();
+            }
+
         }
-        
     }
 
     void FixedUpdate()

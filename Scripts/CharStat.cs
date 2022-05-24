@@ -51,11 +51,16 @@ public class CharStat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+
+    }
+
+    //Rolls character stats, called in the GameManager
+    public void StatRoll() 
+    {
         //Read the JSON file to determine this character's stats
         for (int i = 0; i < JSONR.GetComponent<JSONReader>().MyCharacter.Character.Length; i++)
         {
-            Debug.Log(gameObject.name);
             //If the character's Index value matches the Token ID, then match the character's stats
             if (index == JSONR.GetComponent<JSONReader>().MyCharacter.Character[i].TokenID)
             {
@@ -67,7 +72,7 @@ public class CharStat : MonoBehaviour
                 Rate = JSONR.GetComponent<JSONReader>().MyCharacter.Character[i].Rate;
             }
         }
-        
+
         //Set current HP to max
         HPCurrent = HPMax;
         //Keep them from attacking out of turn
@@ -78,7 +83,6 @@ public class CharStat : MonoBehaviour
         AttackMeter.fillAmount = 0;
         //Normalize speed value, can be adjusted with abilities
         SpeedMod = 1;
-
     }
 
     // Update is called once per frame
@@ -97,6 +101,8 @@ public class CharStat : MonoBehaviour
         //If HP is 0, the character is considered KOed
         if (HPCurrent<=0)
         {
+            //perfect place to call KO function
+
             //Debug.Log(this.gameObject.name + " is dead");
             Active = false;
         }
@@ -155,8 +161,6 @@ public class CharStat : MonoBehaviour
 
         }
 
-        //Debug.Log("Target:" + AttackTarget);
-
         //Run the Attack function, targeting the designated opponent
         Attack(AttackTarget);
     }
@@ -170,7 +174,7 @@ public class CharStat : MonoBehaviour
         FinalTarget.GetComponent<CharStat>().HPCurrent -= Damage;
 
         //Debug.Log(this.gameObject.name + " did " + Damage + " to " + FinalTarget.name);
-        Debug.Log(this.gameObject.name + " is attacking");
+        //Debug.Log(this.gameObject.name + " is attacking");
 
         //Increase the number of turns pased
         GM.GetComponent<GameManager>().TurnIndex++;
